@@ -48,8 +48,9 @@ namespace ToDoList
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-              .SetBasePath(env.ContentRootPath)
-              .AddJsonFile("appsettings.json"); //this line replaces .AddEnvironmentVariables();
+                .SetBasePath(env.ContentRootPath)
+                .AddEnvironmentVariables()
+                .AddJsonFile("appsettings.json"); //this line replaces .AddEnvironmentVariables();
 			Configuration = builder.Build();
         }
 
