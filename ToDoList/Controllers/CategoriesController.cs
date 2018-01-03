@@ -15,7 +15,7 @@ namespace ToDoList.Controllers
         private ToDoListContext db = new ToDoListContext();
         public IActionResult Index()
         {
-            return View(db.Categories.Include(categories => categories.CategoryId).ToList());
+            return View(db.Categories.ToList());
         }
 
 		public IActionResult Create()

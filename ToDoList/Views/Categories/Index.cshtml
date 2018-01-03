@@ -12,11 +12,11 @@
     <body>
       <h2>To Do List Categories</h2>
       <hr />
-      <h4>@Html.DisplayNameFor(model => model.Category)</h4>
+      <h4>@Html.DisplayNameFor(model => model.Name)</h4>
       <ul>
         @foreach(var listCategory in Model)
         {
-            <li>@Html.DisplayFor(modelCategory => listCategory.Category) | 
+            <li>@Html.DisplayFor(modelCategory => listCategory.Name) | 
 			    @Html.ActionLink("Details", "Details", new { id = listCategory.CategoryId }) | 
 			    @Html.ActionLink("Edit", "Edit", new { id = listCategory.CategoryId }) | 
 			    @Html.ActionLink("Delete", "Delete", new { id = listCategory.CategoryId })</li>
