@@ -17,12 +17,16 @@ namespace ToDoList.Controllers
         {
             return View(db.Categories.ToList());
         }
-
+        public IActionResult Details(int id)
+        {
+            var thisCategory = db.Categories.FirstOrDefault(categories => categories.CategoryId == id);
+            return View(thisCategory);
+        }
 		public IActionResult Create()
 		{
+			ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
 			return View();
 		}
-
 		[HttpPost]
 		public IActionResult Create(Category category)
 		{
@@ -30,13 +34,12 @@ namespace ToDoList.Controllers
 			db.SaveChanges();
 			return RedirectToAction("Index");
 		}
-
 		public IActionResult Edit(int id)
 		{
-			var thisCategory = db.Categories.FirstOrDefault(categories => categories.CategoryId == id);
+			var thisCategory = db.Categories.FirstOrDefault();
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
 			return View(thisCategory);
 		}
-
 		[HttpPost]
 		public IActionResult Edit(Category category)
 		{
@@ -47,10 +50,9 @@ namespace ToDoList.Controllers
 
 		public IActionResult Delete(int id)
 		{
-			var thisCategory = db.Items.FirstOrDefault(items => items.CategoryId == id);
+			var thisCategory = db.Categories.FirstOrDefault(categories => categories.CategoryId == id);
 			return View(thisCategory);
 		}
-
 		[HttpPost, ActionName("Delete")]
 		public IActionResult DeleteConfirmed(int id)
 		{
@@ -59,7 +61,5 @@ namespace ToDoList.Controllers
 			db.SaveChanges();
 			return RedirectToAction("Index");
 		}
-
-
     }
 }
